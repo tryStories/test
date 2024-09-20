@@ -2,30 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ddd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader Example</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-</div>
 
-<div class="banner">
-	<div class="content">
-		<h2><b>głosuj na szlapsa</b></h2>
-        <h6><b>Oddaj głos mądrze...</b></h6>
-	</div>
-</div>
+    <!-- Loader -->
+    <div id="loader-container">
+        <span class="loader"></span>
+    </div>
+
+    <!-- Content -->
+    <div class="wrapper" style="visibility:hidden; opacity: 0;"> <!-- Ukrywamy zawartość -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="banner" style="visibility:hidden; opacity: 0;"> <!-- Ukrywamy baner -->
+        <div class="content">
+            <h2><b>głosuj na szlapsa</b></h2>
+            <h6><b>Oddaj głos mądrze...</b></h6>
+        </div>
+    </div>
+
+    <script>
+        // Ukryj loader po 5 sekundach z efektem zanikania
+        setTimeout(function() {
+            var loader = document.getElementById('loader-container');
+            loader.style.opacity = '0'; // Fade out loadera
+            
+            // Po 1 sekundzie ukryj loader i pokaż zawartość
+            setTimeout(function() {
+                loader.style.display = 'none'; // Całkowicie ukryj loader
+                var wrapper = document.querySelector('.wrapper');
+                var banner = document.querySelector('.banner');
+                
+                wrapper.style.visibility = 'visible'; // Wyświetl zawartość
+                banner.style.visibility = 'visible'; // Wyświetl baner
+                
+                // Fade in efekt
+                setTimeout(function() {
+                    wrapper.style.opacity = '1'; // Fade in zawartości
+                    banner.style.opacity = '1'; // Fade in banera
+                }, 50); // Krótkie opóźnienie, aby dać czas na widoczność
+            }, 1000); // Czas trwania efektu fade-out
+        }, 1000);
+    </script>
 
 </body>
 </html>
