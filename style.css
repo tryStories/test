@@ -1,10 +1,97 @@
-/* Podstawowe ustawienia dla body */
 body {
   background: #111;
   margin: 0;
   padding: 0;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
+}
+
+/* Loader Container */
+#loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Warstwa nad wszystkim */
+  opacity: 1; /* Domyślna przezroczystość */
+  transition: opacity 1s ease-out; /* Dodajemy płynne zanikanie */
+}
+
+/* Loader */
+.loader {
+  width: 0;
+  height: 4.8px;
+  display: inline-block;
+  position: relative;
+  background: #FFF;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  animation: animFw 3s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+  content: '';
+  width: 10px;
+  height: 1px;
+  background: #FFF;
+  position: absolute;
+  top: 9px;
+  right: -2px;
+  opacity: 0;
+  transform: rotate(-45deg) translateX(0px);
+  box-sizing: border-box;
+  animation: coli1 0.3s linear infinite;
+}
+
+.loader::before {
+  top: -4px;
+  transform: rotate(45deg);
+  animation: coli2 0.3s linear infinite;
+}
+
+@keyframes animFw {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes coli1 {
+  0% {
+    transform: rotate(-45deg) translateX(0px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotate(-45deg) translateX(-45px);
+    opacity: 0;
+  }
+}
+
+@keyframes coli2 {
+  0% {
+    transform: rotate(45deg) translateX(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translateX(-45px);
+    opacity: 0.7;
+  }
+}
+
+.wrapper {
+  transition: opacity 1s ease-in; /* Fade in transition */
+}
+
+.banner {
+  transition: opacity 1s ease-in; /* Fade in transition */
 }
 
 .wrapper span {
@@ -14,19 +101,18 @@ body {
   width: 50px;
   z-index: -1;
   background-color: #18191f;
-  box-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+  box-shadow: 0 0 30px #0073ff37, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
   animation: animate 5s linear infinite;
   border-radius: 5px;
 }
 
-/* Każdy span z opóźnieniami animacji */
 .wrapper span:nth-child(1) {
   left: 5vw;
   animation-delay: 0.6s;
 }
 .wrapper span:nth-child(2) {
   left: 10vw;
-  animation-delay: s;
+  animation-delay: 1s;
   width: 6vw;
   height: 6vw;
 }
@@ -69,7 +155,6 @@ body {
   animation-delay: 4s;
 }
 
-/* Stylowanie banneru */
 .banner {
   display: flex;
   justify-content: center;
@@ -78,45 +163,43 @@ body {
   text-align: center;
 }
 
-/* Tekst w bannerze */
 .content h2 b {
-  -webkit-text-stroke-width: 2px;
-  color: #fff;
+  font-weight: 100%;
+  color: #ffffff60;
   font-size: 10vw;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
 
 .content h6 b {
-  color: #fff;
+  color: #ffffff60;
   font-size: 3vw;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-/* Animacja dla spadania i rotacji spanów */
 @keyframes animate {
   0% {
-      transform: translateY(0);
-      opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
   80% {
-      opacity: .7;
+    opacity: .7;
   }
   100% {
-      transform: translateY(-800px) rotate(360deg);
-      opacity: 0;
+    transform: translateY(-800px) rotate(360deg);
+    opacity: 0;
   }
 }
 
 /* Media Queries - Dostosowanie do małych ekranów (smartfony) */
 @media (max-width: 600px) {
   .content h2 b {
-      font-size: 8vw;
+    font-size: 8vw;
   }
 
   .wrapper span {
-      width: 5vw;
-      height: 5vw;
+    width: 5vw;
+    height: 5vw;
   }
 }
